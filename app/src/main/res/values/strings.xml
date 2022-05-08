@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">RPS</string>
+    <string name="Decleration_text">Winner</string>
+    <string name="Title">Rock-Paper-Scissors</string>
+</resources>
