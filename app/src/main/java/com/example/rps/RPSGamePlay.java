@@ -1,13 +1,25 @@
 package com.example.rps;
+import android.content.SharedPreferences;
+import android.content.Context;
+import android.preference.PreferenceManager;
 import android.widget.Button;
 import androidx.annotation.VisibleForTesting;
 import com.example.rps.MainActivity;
 
+
 import java.util.Random;
 import java.util.logging.Logger;
 
+import static android.content.Context.MODE_PRIVATE;
+
+
 public class RPSGamePlay {
     private Button button;
+
+    private int wins = 0;
+    private int losses = 0;
+    private int draw = 0;
+
 
     //All possible choices for the AI to play
     final private String[] AI_Choices={"Rock","Paper","Scissor"};
@@ -38,17 +50,48 @@ public class RPSGamePlay {
 
     protected String RULE(String player_Move,String opponentMove){
         if(player_Move.equals(opponentMove)) {
-            return "Tie....";
+            draw++;
+            return "Computer played: " + opponentMove+ " Its a Tie :P";
         }
         //All possible cases of player winning
         else if((player_Move.equals("Rock") && opponentMove.equals("Scissor")) || (player_Move.equals("Scissor") &&
                 opponentMove.equals("Paper")) || (player_Move.equals("Paper") && opponentMove.equals("Rock"))) {
 
-            return "You Win....";
+            wins++;
+            return "Computer played: " + opponentMove+ " You Win :)";
+
         }else{
-            return "You Lost...";
+            losses++;
+            return "Computer played: " + opponentMove+ " You Lose :(";
         }
     }
+
+    public int getWins()
+    {
+        return wins;
+    }
+    public int getLosses()
+    {
+        return losses;
+    }
+    public int getDraw()
+    {
+        return draw;
+    }
+
+    public void setWins(int w)
+    {
+
+    }
+    public void setLosses(int l)
+    {
+        losses = l;
+    }
+    public void setDraw(int d)
+    {
+        draw = d;
+    }
+
 
     protected String AI_Play(){
         //Get a random from 0-2 as the AI's choice
