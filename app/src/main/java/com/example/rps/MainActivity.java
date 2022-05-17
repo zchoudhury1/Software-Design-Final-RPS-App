@@ -20,44 +20,55 @@ public class MainActivity extends AppCompatActivity {
     public static final String win = "Wins";
     public static final String draw = "Draws";
     public static final String loss = "Losses";
+    public static final String numGames = "Games Played";
+    public static final String rocksPlayed = "Rocks Played";
+    public static final String papersPlayed = "Papers Played";
+    public static final String scissorsPlayed = "scissors Played";
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-         Result=findViewById(R.id.Result);
-         message=findViewById(R.id.Title_Text);
-         //Initialize buttons
-         Button Rock=findViewById(R.id.Rock);
-         Button Paper=findViewById(R.id.Papper);
-         Button Scicorrs=findViewById(R.id.Siccors);
-         rpsGamePlay=new RPSGamePlay(Rock);
-         //If any of these buttons are clicked the .play() function returns a string
-         Rock.setOnClickListener(v -> Result.setText(rpsGamePlay.play(Rock)));
-         Rock.setOnClickListener(new View.OnClickListener()
-         {
-             @Override
-             public void onClick(View view)
-             {
-                 saveData();
-             }
-         });
-         Paper.setOnClickListener(v-> Result.setText(rpsGamePlay.play(Paper)));
+        Result=findViewById(R.id.Result);
+        message=findViewById(R.id.Title_Text);
+        //Initialize buttons
+        Button Rock=findViewById(R.id.Rock);
+        Button Paper=findViewById(R.id.Papper);
+        Button Scicorrs=findViewById(R.id.Siccors);
+        rpsGamePlay=new RPSGamePlay(Rock);
+        //if it is zero check our db if it has the values and load them in
+        if(rpsGamePlay.getDraw() == 0 && rpsGamePlay.getLosses() == 0 && rpsGamePlay.getWins() == 0)
+        {
+            loadData();
+        }
+        //If any of these buttons are clicked the .play() function returns a string
+        Rock.setOnClickListener(new View.OnClickListener()
+        {
+
+            @Override
+            public void onClick(View view)
+            {
+                Result.setText(rpsGamePlay.play(Rock));
+                saveData();
+            }
+        });
         Paper.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
+                Result.setText(rpsGamePlay.play(Paper));
                 saveData();
             }
         });
-         Scicorrs.setOnClickListener(v-> Result.setText(rpsGamePlay.play(Scicorrs)));
         Scicorrs.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
+                Result.setText(rpsGamePlay.play(Scicorrs));
                 saveData();
             }
         });
@@ -72,6 +83,12 @@ public class MainActivity extends AppCompatActivity {
         thesePrefEditor.putInt(win, rpsGamePlay.getWins());
         thesePrefEditor.putInt(loss, rpsGamePlay.getLosses());
         thesePrefEditor.putInt(draw, rpsGamePlay.getDraw());
+        thesePrefEditor.putInt(rocksPlayed, rpsGamePlay.getRockCount());
+        thesePrefEditor.putInt(scissorsPlayed, rpsGamePlay.getScissorCount());
+        thesePrefEditor.putInt(papersPlayed, rpsGamePlay.getPaperCount());
+        thesePrefEditor.putInt(numGames,rpsGamePlay.getDraw()+rpsGamePlay.getWins()+rpsGamePlay.getLosses());
+        thesePrefEditor.commit();
+
     }
     public void loadData()
     {
@@ -79,6 +96,9 @@ public class MainActivity extends AppCompatActivity {
         rpsGamePlay.setDraw(thesePreferences.getInt(draw, 0));
         rpsGamePlay.setWins(thesePreferences.getInt(win, 0));
         rpsGamePlay.setLosses(thesePreferences.getInt(loss, 0));
+        rpsGamePlay.setRockCount(thesePreferences.getInt(rocksPlayed, 0));
+        rpsGamePlay.setScissorCount(thesePreferences.getInt(scissorsPlayed, 0));
+        rpsGamePlay.setPaperCount(thesePreferences.getInt(papersPlayed, 0));
     }
 
 }

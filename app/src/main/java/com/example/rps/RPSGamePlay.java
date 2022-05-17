@@ -19,6 +19,9 @@ public class RPSGamePlay {
     private int wins = 0;
     private int losses = 0;
     private int draw = 0;
+    private int rockCount = 0;
+    private int paperCount = 0;
+    private int scissorCount = 0;
 
 
     //All possible choices for the AI to play
@@ -49,6 +52,7 @@ public class RPSGamePlay {
     }
 
     protected String RULE(String player_Move,String opponentMove){
+        handPlayedCount(player_Move);
         if(player_Move.equals(opponentMove)) {
             draw++;
             return "Computer played: " + opponentMove+ " Its a Tie :P";
@@ -66,6 +70,19 @@ public class RPSGamePlay {
         }
     }
 
+    public void handPlayedCount(String player_Move)
+    {
+        if(player_Move.equals("Rock"))
+        {
+            rockCount++;
+        }else if(player_Move.equals("Paper")) {
+            paperCount++;
+        }else
+        {
+            scissorCount++;
+        }
+    }
+
     public int getWins()
     {
         return wins;
@@ -78,6 +95,19 @@ public class RPSGamePlay {
     {
         return draw;
     }
+    public int getRockCount()
+    {
+        return rockCount;
+    }
+
+    public int getPaperCount() {
+        return paperCount;
+    }
+
+    public int getScissorCount() {
+        return scissorCount;
+    }
+
 
     public void setWins(int w)
     {
@@ -92,6 +122,17 @@ public class RPSGamePlay {
         draw = d;
     }
 
+    public void setPaperCount(int paperCount) {
+        this.paperCount = paperCount;
+    }
+
+    public void setRockCount(int rockCount) {
+        this.rockCount = rockCount;
+    }
+
+    public void setScissorCount(int scissorCount) {
+        this.scissorCount = scissorCount;
+    }
 
     protected String AI_Play(){
         //Get a random from 0-2 as the AI's choice

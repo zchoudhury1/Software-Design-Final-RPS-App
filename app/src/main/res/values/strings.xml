@@ -5,4 +5,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Rules">Rock Beats Scissors</string>
+    <string name="rocks_played">Rocks Played</string>
+    <string name="games_played">Games Played</string>
+    <string name="wins">Wins</string>
+    <string name="losses">Losses</string>
+    <string name="papers_played">Papers Played</string>
+    <string name="scissors_played">Scissors Played</string>
+    <string name="reset_stats">RESET STATS</string>
+    <string name="player_statistics">Player Statistics</string>
+    <string name="draws">Draws</string>
 </resources>

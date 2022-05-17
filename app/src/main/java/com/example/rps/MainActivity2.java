@@ -43,7 +43,8 @@ public class MainActivity2 extends AppCompatActivity {
                 openGameRules();
                  break;
             case R.id.PlayerStats:
-                Toast.makeText(this, "PlayerStats", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, PlayerStats.class);
+                startActivity(intent);
                 break;
             default:
                return super.onOptionsItemSelected(item);
