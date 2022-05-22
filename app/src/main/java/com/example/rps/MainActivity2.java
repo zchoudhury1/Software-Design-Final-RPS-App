@@ -14,6 +14,7 @@ import android.os.Bundle;
 
 public class MainActivity2 extends AppCompatActivity {
     private Button Singleplayer;
+    private Button Multiplayer;
     private AlertDialog.Builder dialogbuilder;
     private AlertDialog dialog;
 
@@ -26,7 +27,10 @@ public class MainActivity2 extends AppCompatActivity {
         Singleplayer.setOnClickListener(v -> {
                     openGamePlayActivity();
         });
-
+        Multiplayer=findViewById(R.id.multiplayer);
+        Multiplayer.setOnClickListener(v -> {
+            Toast.makeText(MainActivity2.this, "Under Construction :P", Toast.LENGTH_SHORT).show();
+        });
     }
     //Creates popup menu in view
     @Override
